@@ -15,6 +15,8 @@ source push.conf
 : "${target_partition:=}"
 : "${host:=}"
 
+latest_firmware=$(echo "${bin_path}/firmware-"*.bin | choose -1)
+
 function check_exists() {
   var_name="$1"
   var_val="$2"
@@ -34,16 +36,12 @@ mkdir -p "${control_path_prefix}"
 # open SSH session
 ssh -nNf -o ControlMaster=yes -o ControlPath="${control_path}" "${host}"
 
-
-# shellcheck disable=SC2154 # ${target_partition} is specified in push.conf
-# shellcheck disable=SC2087 # local expansion is intended behavior
 ssh root@yuri-mech bash << EOF
   mkdir -p "${remote_mountpoint}" && \
   mount "${target_partition}" "${remote_mountpoint}" && \
   rm "${remote_mountpoint}"/*.bin
 EOF
 
-latest_firmware=$(echo "${bin_path}/firmware-"*.bin | choose -1)
 
 rsync -e "ssh -o ControlPath='${control_path}'" -P "${latest_firmware}"  "${host}":/mnt/target/
 
