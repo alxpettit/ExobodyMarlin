@@ -8,9 +8,12 @@
 # FISH shell people, pls make a linter u dummies
 
 # VERY IMPORTANT! Strict mode. See: http://redsymbol.net/articles/unofficial-bash-strict-mode/
-shopt -s nullglob
 set -euo pipefail
 IFS=$'\n\t'
+
+# Nullglob needed for gracefully checking if anything matched
+shopt -s nullglob
+
 
 echo "Loading config..."
 source push.conf
