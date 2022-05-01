@@ -1,0 +1,9 @@
+# Rename to push.conf and set "host" and "target_partition" appropriately
+
+host="root@some-device"
+target_partition="/dev/disk/by-id/usb-Some-USB-device"
+# control_path_prefix=${HOME}/.ssh/ctl
+# control_path=${control_path_prefix}/%L-%r@%h:%p
+# build_env=STM32F103RET6_creality
+# remote_mountpoint=/mnt/target
+# bin_path=.pio/build/${build_env}

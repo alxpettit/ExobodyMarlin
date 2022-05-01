@@ -36,6 +36,7 @@ applet/
 #
 # Misc
 #
+push.conf
 *~
 *.orig
 *.rej
