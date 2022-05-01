@@ -54,7 +54,5 @@ ssh "${host}" bash << EOF
   done
 EOF
 
-# ssh root@yuri-mech fsck "$target_partition"
-
 # Close SSH session
 ssh -O exit -o ControlPath="${control_path}"  "${host}"
